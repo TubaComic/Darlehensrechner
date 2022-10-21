@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="338.0" prefWidth="359.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rechner.darlehensrechner.MainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <AnchorPane prefHeight="359.0" prefWidth="319.0">
+      <children>
+         <TabPane layoutX="4.0" layoutY="6.0" prefHeight="492.0" prefWidth="667.0" tabClosingPolicy="UNAVAILABLE">
+           <tabs>
+             <Tab fx:id="monatlicheRateTab" text="Monatliche Rate">
+               <content>
+                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="275.0">
+                        <children>
+                            <TextField fx:id="kredit" layoutX="38.0" layoutY="95.0" promptText="Kreditsumme in Euro" />
+                            <TextField fx:id="zinssatz" layoutX="38.0" layoutY="134.0" promptText="Zinssatz in Prozent" />
+                            <TextField fx:id="laufzeit" layoutX="38.0" layoutY="173.0" promptText="Laufzeit in Monaten" />
+                            <Button layoutX="40.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBerechnenButtonClick" text="Berechnen" />
+                            <Text layoutX="197.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+                                <font>
+                                    <Font size="16.0" />
+                                </font>
+                            </Text>
+                            <Text fx:id="ergebnisText" layoutX="215.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                <font>
+                                    <Font size="16.0" />
+                                </font>
+                            </Text>
+                            <Text fx:id="ergebnisText12" layoutX="215.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                <font>
+                                    <Font size="16.0" />
+                                </font>
+                            </Text>
+                           <Text layoutX="248.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Darlehensrechner">
+                              <font>
+                                 <Font size="22.0" />
+                              </font>
+                           </Text>
+                        </children></AnchorPane>
+               </content>
+             </Tab>
+             <Tab fx:id="zinssatzTab" text="Monatlicher Zinssatz">
+                 <content>
+                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="275.0">
+                         <children>
+                             <TextField fx:id="kredit2" layoutX="38.0" layoutY="95.0" promptText="Kreditsumme in Euro" />
+                             <TextField fx:id="zinssatz2" layoutX="38.0" layoutY="134.0" promptText="Zinssatz in Prozent" />
+                             <TextField fx:id="laufzeit2" layoutX="38.0" layoutY="173.0" promptText="Laufzeit in Monaten" />
+                             <Button layoutX="40.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBerechnenButton2Click" text="Berechnen" />
+                             <Text layoutX="197.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+                                 <font>
+                                     <Font size="16.0" />
+                                 </font>
+                             </Text>
+                             <Text fx:id="ergebnisText2" layoutX="215.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                 <font>
+                                     <Font size="16.0" />
+                                 </font>
+                             </Text>
+                             <Text fx:id="ergebnisText22" layoutX="215.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                 <font>
+                                     <Font size="16.0" />
+                                 </font>
+                             </Text>
+                             <Text layoutX="248.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Darlehensrechner">
+                                 <font>
+                                     <Font size="22.0" />
+                                 </font>
+                             </Text>
+                         </children></AnchorPane>
+                 </content>
+             </Tab>
+               <Tab text="Anzahl der Raten">
+                   <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="275.0">
+                           <children>
+                               <TextField fx:id="kredit3" layoutX="38.0" layoutY="95.0" promptText="Kreditsumme in Euro" />
+                               <TextField fx:id="zinssatz3" layoutX="38.0" layoutY="134.0" promptText="Zinssatz in Prozent" />
+                               <TextField fx:id="monatlicheRate3" layoutX="38.0" layoutY="173.0" promptText="Rate in Euro" />
+                               <Button layoutX="40.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBerechnenButton3Click" text="Berechnen" />
+                               <Text layoutX="197.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+                                   <font>
+                                       <Font size="16.0" />
+                                   </font>
+                               </Text>
+                               <Text fx:id="ergebnisText3" layoutX="215.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                   <font>
+                                       <Font size="16.0" />
+                                   </font>
+                               </Text>
+                               <Text layoutX="248.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Darlehensrechner">
+                                   <font>
+                                       <Font size="22.0" />
+                                   </font>
+                               </Text>
+                           </children></AnchorPane>
+                   </content>
+               </Tab>
+               <Tab text="Kreditbetrag">
+                   <content>
+                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="275.0">
+                           <children>
+                               <TextField fx:id="monatlicheRate" layoutX="38.0" layoutY="95.0" promptText="Rate in Euro" />
+                               <TextField fx:id="zinssatz4" layoutX="38.0" layoutY="134.0" promptText="Zinssatz in Prozent" />
+                               <TextField fx:id="laufzeit4" layoutX="38.0" layoutY="173.0" promptText="Laufzeit in Monaten" />
+                               <Button layoutX="40.0" layoutY="215.0" mnemonicParsing="false" onAction="#onBerechnenButton4Click" text="Berechnen" />
+                               <Text layoutX="197.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="=">
+                                   <font>
+                                       <Font size="16.0" />
+                                   </font>
+                               </Text>
+                               <Text fx:id="ergebnisText4" layoutX="215.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                                   <font>
+                                       <Font size="16.0" />
+                                   </font>
+                               </Text>
+                               <Text layoutX="248.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Darlehensrechner">
+                                   <font>
+                                       <Font size="22.0" />
+                                   </font>
+                               </Text>
+                           </children></AnchorPane>
+                   </content>
+               </Tab>
+           </tabs>
+         </TabPane>
+
+      </children>
+   </AnchorPane>
+</VBox>

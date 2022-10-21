@@ -2,21 +2,16 @@ package com.rechner.darlehensrechner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainController {
-    String error = "Bitte füllen Sie alles aus";
+    @FXML
+    private Text ergebnisText12;
+    @FXML
+    private Text ergebnisText22;
     @FXML
     private TextField monatlicheRate;
     @FXML
@@ -38,7 +33,7 @@ public class MainController {
     @FXML
     private TextField zinssatz3;
     @FXML
-    private TextField hoechstrate;
+    private TextField monatlicheRate3;
     @FXML
     private Text ergebnisText3;
     @FXML
@@ -54,6 +49,8 @@ public class MainController {
     @FXML
     private TextField laufzeit;
 
+    Alert a = new Alert(Alert.AlertType.ERROR);
+
     //V1
     //Monatsrate = [Kreditsumme + (Kreditsumme x Zinssatz ÷ 100)] ÷ Laufzeit in Monaten.
 
@@ -67,50 +64,57 @@ public class MainController {
     //Kreditbetrag = Monatliches Finanzierungspotenzial × 12 Monate × 100 / (Zinssatz + Monatliche Rate)
 
     public void setErgebnisText() {
-        ergebnisText.setText("Die monatliche Rate liegt bei " + (String.valueOf((Integer.parseInt(kredit.getText()) + (Integer.parseInt(kredit.getText()) * Integer.parseInt(zinssatz.getText()) / 100)) / Integer.parseInt(laufzeit.getText()))) + " €");
+        if(!kredit.getText().equals("") && !zinssatz.getText().equals("") && !laufzeit.getText().equals("")) {
+            ergebnisText.setText("Die monatliche Rate liegt bei " + ((Double.parseDouble(kredit.getText()) + (Double.parseDouble(kredit.getText()) * Double.parseDouble(zinssatz.getText()) / 100)) / Double.parseDouble(laufzeit.getText())) + " €");
+            ergebnisText12.setText("Die monatliche Rate ohne Zinsen liegt bei " + ((Double.parseDouble(kredit.getText())) / Double.parseDouble(laufzeit.getText())) + " €");
+        } else {
+            a.setContentText("Bitte füllen Sie alles aus!");
+            a.show();
+        }
     }
 
     public void setErgebnisText2() {
-        ergebnisText2.setText("Der monatliche Zinssatz liegt bei " + (String.valueOf((Integer.parseInt(kredit2.getText()) * (Integer.parseInt(zinssatz2.getText()) / (100 * Integer.parseInt(laufzeit2.getText())))))) + " €");
+        if(!kredit2.getText().equals("") && !zinssatz2.getText().equals("") && !laufzeit2.getText().equals("")) {
+            ergebnisText2.setText("Der monatliche Zinssatz liegt bei " + (Double.parseDouble(kredit2.getText()) * (Double.parseDouble(zinssatz2.getText()) / 100)) + " €");
+            ergebnisText22.setText("und Sie geben " + (Double.parseDouble(kredit2.getText()) * (Double.parseDouble(zinssatz2.getText()) / 100) * Double.parseDouble(laufzeit2.getText())) + " € an Zinsen insgesamt aus");
+        } else {
+            a.setContentText("Bitte füllen Sie alles aus!");
+            a.show();
+        }
     }
 
     public void setErgebnisText3() {
-        ergebnisText3.setText("Die Anzahl der Raten betragen " + String.valueOf((Integer.parseInt(kredit3.getText()) / (Integer.parseInt(hoechstrate.getText()) - (Integer.parseInt(kredit3.getText()) * Integer.parseInt(zinssatz3.getText()) / 100)))));
+        if(!kredit3.getText().equals("") && !zinssatz3.getText().equals("") && !monatlicheRate3.getText().equals("")) {
+            ergebnisText3.setText("Die Anzahl der Raten betragen " + Double.parseDouble(kredit3.getText()) / (Double.parseDouble(monatlicheRate3.getText()) + (Double.parseDouble(kredit3.getText()) * (Double.parseDouble(zinssatz3.getText()) / 100))));
+        } else {
+            a.setContentText("Bitte füllen Sie alles aus!");
+            a.show();
+        }
     }
 
+
     public void setErgebnisText4() {
-        ergebnisText4.setText("Der Kredit liegt bei " + (String.valueOf((Integer.parseInt(monatlicheRate.getText()) * Integer.parseInt(laufzeit4.getText()) * 100 / (Integer.parseInt(zinssatz.getText()) + Integer.parseInt(monatlicheRate.getText()))) / Integer.parseInt(laufzeit.getText()))) + " €");
+        if(!monatlicheRate.getText().equals("") && !laufzeit4.getText().equals("") && !zinssatz4.getText().equals("")) {
+            ergebnisText4.setText("Der Kredit liegt bei " + (Double.parseDouble(monatlicheRate.getText()) * Double.parseDouble(laufzeit4.getText()) + (Double.parseDouble(laufzeit4.getText()) * (Double.parseDouble(monatlicheRate.getText()) * ((Double.parseDouble(zinssatz4.getText()) / 100))))) + " €");
+        } else {
+            a.setContentText("Bitte füllen Sie alles aus!");
+            a.show();
+        }
     }
 
     public void onBerechnenButtonClick(ActionEvent actionEvent) {
-        if(kredit.getText() != null || zinssatz.getText() != null || laufzeit.getText() != null) {
-            setErgebnisText();
-        } else {
-            ergebnisText.setText(error);
-        }
+        setErgebnisText();
     }
 
     public void onBerechnenButton2Click(ActionEvent actionEvent) {
-        if(kredit2.getText() != null || zinssatz2.getText() != null || laufzeit2.getText() != null) {
-            setErgebnisText2();
-        } else {
-            ergebnisText2.setText(error);
-        }
+        setErgebnisText2();
     }
 
     public void onBerechnenButton3Click(ActionEvent actionEvent) {
-        if(kredit3.getText() != null || zinssatz3.getText() != null || hoechstrate.getText() != null) {
-            setErgebnisText3();
-        } else {
-            ergebnisText3.setText(error);
-        }
+        setErgebnisText3();
     }
 
     public void onBerechnenButton4Click(ActionEvent actionEvent) {
-        if(monatlicheRate.getText() != null || laufzeit4.getText() != null || zinssatz4.getText() != null) {
-            setErgebnisText4();
-        } else {
-            ergebnisText4.setText(error);
-        }
+        setErgebnisText4();
     }
 }
